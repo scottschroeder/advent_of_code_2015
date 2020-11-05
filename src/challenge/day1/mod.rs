@@ -25,7 +25,7 @@ fn first_basement(input: &str) -> Result<usize> {
             _ => return Err(ah!("unknown input char: {}", c)),
         }
         if floor == -1 {
-            return Ok(idx + 1)
+            return Ok(idx + 1);
         }
     }
     Err(ah!("never entered basement"))
