@@ -13,10 +13,14 @@ aoc = { path = "../advent_of_code", package = "advent_of_code"}
 clap = "2.33.3"
 anyhow = "1.0.32"
 color-backtrace = { version = "0.4" }
+rayon = "1.5.0"
 
 
 log = "0.4"
 pretty_env_logger = "0.4"
+
+
+md5 = "0.7.0"
 
 
 # [profile.test]
