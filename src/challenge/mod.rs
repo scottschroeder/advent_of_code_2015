@@ -8,6 +8,7 @@ mod day4;
 mod day5;
 mod day6;
 mod day7;
+mod day8;
 
 pub fn run(args: &clap::ArgMatches) -> Result<()> {
     let day = args.value_of("day").unwrap().parse::<u32>()?;
@@ -29,6 +30,8 @@ pub fn run(args: &clap::ArgMatches) -> Result<()> {
         (6, 2) => day6::part2(&input),
         (7, 1) => day7::part1(&input),
         (7, 2) => day7::part2(&input),
+        (8, 1) => day8::part1(&input),
+        (8, 2) => day8::part2(&input),
         (d, p) => Err(ah!("unimplemented challenge day {} part {}", d, p)),
     }?;
     println!("{}", result);
