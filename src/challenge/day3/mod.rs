@@ -1,6 +1,7 @@
+use std::collections::HashMap;
+
 use anyhow::Result;
 use aoc::grid::{compass::Direction, point::Point};
-use std::collections::HashMap;
 
 type Loc = Point<i64>;
 

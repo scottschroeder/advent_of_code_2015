@@ -1,5 +1,4 @@
-use std::collections::HashMap;
-use std::fmt;
+use std::{collections::HashMap, fmt};
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Literal(pub u16);
@@ -41,7 +40,6 @@ pub enum Input<'a> {
     Literal(Literal),
     Wire(Identifier<'a>),
 }
-
 
 impl<'a> Input<'a> {
     fn as_wire(&self) -> Option<Identifier<'a>> {

@@ -1,12 +1,12 @@
-use anyhow::Result;
 use std::collections::HashMap;
 
+use anyhow::Result;
 
-mod parser;
 mod lang;
+mod parser;
 
 pub fn part1(input: &str) -> Result<String> {
-    let x =parser::parse_input(input)?;
+    let x = parser::parse_input(input)?;
     let mut w = HashMap::new();
     signal_engine(&mut w, x);
     log::info!("{:#?}", w);
@@ -14,7 +14,7 @@ pub fn part1(input: &str) -> Result<String> {
 }
 
 pub fn part2(input: &str) -> Result<String> {
-    let x =parser::parse_input(input)?;
+    let x = parser::parse_input(input)?;
     let mut w = HashMap::new();
     signal_engine(&mut w, x.clone());
     let wire_a = *w.get(&lang::Identifier("a")).unwrap();
@@ -26,8 +26,10 @@ pub fn part2(input: &str) -> Result<String> {
     Ok(format!("{:?}", wire_a))
 }
 
-
-fn signal_engine<'a>(complete: &mut HashMap<lang::Identifier<'a>, u16>,mut segments: Vec<lang::Segment<'a>>) {
+fn signal_engine<'a>(
+    complete: &mut HashMap<lang::Identifier<'a>, u16>,
+    mut segments: Vec<lang::Segment<'a>>,
+) {
     while !segments.is_empty() {
         segments.retain(|s| {
             if complete.contains_key(&s.output) {
@@ -42,9 +44,6 @@ fn signal_engine<'a>(complete: &mut HashMap<lang::Identifier<'a>, u16>,mut segme
         })
     }
 }
-
-
-
 
 #[cfg(test)]
 mod tests {
@@ -64,6 +63,5 @@ mod tests {
     #[test]
     fn verify_p2() {
         assert_eq!(part2(INPUT).unwrap().as_str(), "40149")
-
     }
 }

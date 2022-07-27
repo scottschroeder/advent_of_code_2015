@@ -1,5 +1,6 @@
-use anyhow::Result;
 use std::collections::HashMap;
+
+use anyhow::Result;
 
 pub fn part1(input: &str) -> Result<String> {
     let x = input.lines().filter(|l| check_str(l)).count();

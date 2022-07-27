@@ -1,5 +1,6 @@
-use anyhow::{anyhow as ah, Context, Result};
 use std::str::FromStr;
+
+use anyhow::{anyhow as ah, Context, Result};
 
 pub fn part1(input: &str) -> Result<String> {
     let total = box_calc(input, |b| b.surface_area() + b.smallest_side())?;

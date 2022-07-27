@@ -1,6 +1,5 @@
 use anyhow::Result;
 
-
 pub fn part1(input: &str) -> Result<String> {
     let x = input.lines().map(delta).sum::<usize>();
     Ok(format!("{:?}", x))
@@ -20,13 +19,14 @@ fn delta_encode(s: &str) -> usize {
 }
 
 fn escape_len(s: &str) -> usize {
-    s.chars().map(|c| {
-        match c {
+    s.chars()
+        .map(|c| match c {
             '"' => 2,
             '\\' => 2,
             _ => 1,
-        }
-    }).sum::<usize>() + 2
+        })
+        .sum::<usize>()
+        + 2
 }
 
 fn count_quoted(s: &str) -> usize {
@@ -46,15 +46,15 @@ fn count_quoted(s: &str) -> usize {
             } else {
                 hex = None;
             }
-            continue
+            continue;
         }
         match (last_escape, c) {
             (true, 'x') => {
                 count += 1;
                 hex = Some(true)
             }
-            (true, '\\') => count +=1,
-            (true, '"') => count +=1,
+            (true, '\\') => count += 1,
+            (true, '"') => count += 1,
             (false, '"') => return count,
             (false, '\\') => escape = true,
             (true, _) => panic!("unknown escape char: {:?} in {:?}", c, s),
@@ -110,6 +110,5 @@ mod tests {
     #[test]
     fn verify_p2() {
         assert_eq!(part2(INPUT).unwrap().as_str(), "2074")
-
     }
 }

@@ -1,5 +1,6 @@
-use super::lang::*;
 use anyhow::Result;
+
+use super::lang::*;
 
 pub(crate) fn parse_input(s: &str) -> Result<Vec<Segment<'_>>> {
     s.lines().map(parse_line).collect::<Result<Vec<_>>>()
@@ -13,15 +14,33 @@ fn parse_line(s: &str) -> Result<Segment<'_>> {
     let rhs = parse_input_token(rtokens.next().unwrap());
 
     let seg = match rtokens.next() {
-        None => Segment {circut: Circut::Simple(rhs), output},
-        Some(Token::Op(Operation::Not)) => Segment {circut: Circut::Not(rhs), output},
+        None => Segment {
+            circut: Circut::Simple(rhs),
+            output,
+        },
+        Some(Token::Op(Operation::Not)) => Segment {
+            circut: Circut::Not(rhs),
+            output,
+        },
         Some(Token::Op(op)) => {
             let lhs = parse_input_token(rtokens.next().unwrap());
             match op {
-                Operation::And => Segment {circut: Circut::And(lhs, rhs), output},
-                Operation::Or => Segment {circut: Circut::Or(lhs, rhs), output},
-                Operation::LeftShift => Segment {circut: Circut::LeftShift(lhs, rhs), output},
-                Operation::RightShift => Segment {circut: Circut::RightShift(lhs, rhs), output},
+                Operation::And => Segment {
+                    circut: Circut::And(lhs, rhs),
+                    output,
+                },
+                Operation::Or => Segment {
+                    circut: Circut::Or(lhs, rhs),
+                    output,
+                },
+                Operation::LeftShift => Segment {
+                    circut: Circut::LeftShift(lhs, rhs),
+                    output,
+                },
+                Operation::RightShift => Segment {
+                    circut: Circut::RightShift(lhs, rhs),
+                    output,
+                },
                 _ => panic!("unexpected op: {:?} {:?}", op, s),
             }
         }
@@ -48,7 +67,7 @@ fn parse_identifier<'a>(t: &Token<'a>) -> Identifier<'a> {
 
 fn parse_assignment<'a>(t: &Token<'a>) {
     match t {
-        Token::Assign => {}, 
+        Token::Assign => {}
         _ => panic!("expected assignment: {:?}", t),
     }
 }

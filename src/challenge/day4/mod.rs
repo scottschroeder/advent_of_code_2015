@@ -56,22 +56,18 @@ mod tests {
     const INPUT: &str = include_str!("../../../input/day4");
 
     #[test]
-    #[ignore]
     fn ex1() {
         assert_eq!(part1("abcdef").unwrap().as_str(), "609043")
     }
-    #[ignore]
     #[test]
     fn ex2() {
         assert_eq!(part1("pqrstuv").unwrap().as_str(), "1048970")
     }
 
-    #[ignore]
     #[test]
     fn verify_p1() {
         assert_eq!(part1(INPUT).unwrap().as_str(), "254575")
     }
-    #[ignore]
     #[test]
     fn verify_p2() {
         assert_eq!(part2(INPUT).unwrap().as_str(), "1038736")
