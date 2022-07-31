@@ -10,7 +10,10 @@ fn main() -> Result<()> {
 
     challenge::run(&args).map_err(|e| {
         log::error!("{}", e);
-        ah!("unrecoverable failure")
+        e.chain()
+            .skip(1)
+            .for_each(|cause| log::error!("because: {}", cause));
+        anyhow::anyhow!("unrecoverable {} failure", clap::crate_name!())
     })
 }
 fn setup_logger(level: u64) {
